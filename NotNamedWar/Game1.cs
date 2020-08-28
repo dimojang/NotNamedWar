@@ -67,10 +67,10 @@ namespace NotNamedWar
                 Exit();
 
             // TODO: Add your update logic here
-            if (Keyboard.GetState().IsKeyDown(Keys.A)) x0++;
-            if (Keyboard.GetState().IsKeyDown(Keys.D)) x0--;
-            if (Keyboard.GetState().IsKeyDown(Keys.W)) y0++;
-            if (Keyboard.GetState().IsKeyDown(Keys.S)) y0--;
+            if (Keyboard.GetState().IsKeyDown(Keys.A)) x0 += 10;
+            if (Keyboard.GetState().IsKeyDown(Keys.D)) x0 -= 10;
+            if (Keyboard.GetState().IsKeyDown(Keys.W)) y0 += 10;
+            if (Keyboard.GetState().IsKeyDown(Keys.S)) y0 -= 10;
 
             a = Mouse.GetState().ScrollWheelValue/100;
 
