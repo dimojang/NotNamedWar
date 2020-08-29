@@ -10,18 +10,13 @@ namespace NotNamedWar.Models
 {
     public class GameMap
     {
-        public int x0 { get; set; } = 100;
+        public Vector2 Position { get; set; } = new Vector2(100, 100);
 
-        public int y0 { get; set; } = 100;
-
-        public int Height { get; set; } = 10;
-
-        public int Width { get; set; } = 10;
+        public Vector2 Size { get; set; } = new Vector2(10, 10);
 
         public int a { get; set; } = 50;
 
         public int LineWidth { get; set; } = 1;
-
 
         public void DrawMap(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
         {
@@ -33,12 +28,12 @@ namespace NotNamedWar.Models
             int hexWidth = (int)(a * Math.Pow(3, 0.5d));
             int hexHeight = a * 3 / 2;
 
-            for (int i = 0; i < Height; i++)
+            for (int i = 0; i < Size.Y; i++)
             {
-                for (int j = 0; j < Width; j++)
+                for (int j = 0; j < Size.X; j++)
                 {
-                    int x = x0 + j * hexWidth + ((i % 2 == 0) ? hexWidth / 2 : 0),
-                        y = y0 + i * hexHeight;
+                    int x = (int)Position.X + j * hexWidth + ((i % 2 == 0) ? 0 : hexWidth / 2),
+                        y = (int)Position.Y + i * hexHeight;
 
                     spriteBatch.Draw(texture, new Rectangle(x, y, a, LineWidth), null,
                         Color.Red, (float)Math.PI / 2, new Vector2(0f, 0f), SpriteEffects.None, 1f);

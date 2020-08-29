@@ -15,6 +15,7 @@ namespace NotNamedWar
         SpriteBatch spriteBatch;
 
         GameMap gameMap = new GameMap();
+        GameSpirits gameSpirits = new GameSpirits();
 
         public MainGame()
         {
@@ -31,6 +32,25 @@ namespace NotNamedWar
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            gameSpirits.Spirits.Add(
+                new Spirit()
+                {
+                    Direction = 1,
+                    Length = 3,
+                    Position = new Vector2(5, 5),
+                    SpiritColor = Color.White,
+                    Width = 1
+                });
+
+            gameSpirits.Spirits.Add(
+                new Spirit()
+                {
+                    Direction = 2,
+                    Length = 3,
+                    Position = new Vector2(5, 5),
+                    SpiritColor = Color.White,
+                    Width = 1
+                });
 
             base.Initialize();
         }
@@ -67,10 +87,10 @@ namespace NotNamedWar
                 Exit();
 
             // TODO: Add your update logic here
-            if (Keyboard.GetState().IsKeyDown(Keys.A)) gameMap.x0 += 10;
-            if (Keyboard.GetState().IsKeyDown(Keys.D)) gameMap.x0 -= 10;
-            if (Keyboard.GetState().IsKeyDown(Keys.W)) gameMap.y0 += 10;
-            if (Keyboard.GetState().IsKeyDown(Keys.S)) gameMap.y0 -= 10;
+            if (Keyboard.GetState().IsKeyDown(Keys.A)) gameMap.Position += new Vector2(10,0);
+            if (Keyboard.GetState().IsKeyDown(Keys.D)) gameMap.Position -= new Vector2(10, 0);
+            if (Keyboard.GetState().IsKeyDown(Keys.W)) gameMap.Position += new Vector2(0, 10);
+            if (Keyboard.GetState().IsKeyDown(Keys.S)) gameMap.Position -= new Vector2(0, 10);
 
             gameMap.a = Mouse.GetState().ScrollWheelValue/100;
 
@@ -88,8 +108,9 @@ namespace NotNamedWar
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            
+
             gameMap.DrawMap(spriteBatch, GraphicsDevice);
+            gameSpirits.DrawSpirits(spriteBatch, GraphicsDevice, gameMap);
 
             spriteBatch.End();
 
