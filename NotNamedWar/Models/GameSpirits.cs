@@ -23,8 +23,6 @@ namespace NotNamedWar.Models
             int hexWidth = (int)(gameMap.a * Math.Pow(3, 0.5d));
             int hexHeight = gameMap.a * 2;
 
-            //int hexHeight2 = (int)(gameMap.a * Math.Pow(3, 0.5d) / 2);
-
             int Length = (int)(gameMap.a * Math.Pow(3, 0.5d) / 2);
 
             foreach (Spirit spirit in Spirits)
@@ -34,47 +32,22 @@ namespace NotNamedWar.Models
 
                 int l = spirit.Length == 1 ? 50 : ((spirit.Length - 2) * 2 + 2) * Length;
 
-                switch (spirit.Direction)
+                float rotation = new Func<float>(() =>
                 {
-                    //0°
-                    case 1:
-                        spriteBatch.Draw(texture, new Rectangle(x, y, l, spirit.Width), null,
-                            Color.Red, 0, new Vector2(0f, 0f), SpriteEffects.None, 1f);
-                        break;
+                    switch (spirit.Direction)
+                    {
+                        case 1: return 0;
+                        case 2: return -(float)Math.PI / 3;
+                        case 3: return -(float)Math.PI * 2 / 3;
+                        case 4: return -(float)Math.PI;
+                        case 5: return (float)Math.PI * 2 / 3;
+                        case 6: return (float)Math.PI / 3;
+                        default: return 0;
+                    }
+                })();
 
-                    //-60°
-                    case 2:
-                        spriteBatch.Draw(texture, new Rectangle(x, y, l, spirit.Width), null,
-                            Color.Red, -(float)Math.PI / 3, new Vector2(0f, 0f), SpriteEffects.None, 1f);
-                        break;
-
-                    //-120°
-                    case 3:
-                        spriteBatch.Draw(texture, new Rectangle(x, y, l, spirit.Width), null,
-                            Color.Red, -(float)Math.PI * 2 / 3, new Vector2(0f, 0f), SpriteEffects.None, 1f);
-                        break;
-
-                    //-180°
-                    case 4:
-                        spriteBatch.Draw(texture, new Rectangle(x, y, l, spirit.Width), null,
-                            Color.Red, -(float)Math.PI, new Vector2(0f, 0f), SpriteEffects.None, 1f);
-                        break;
-
-                    //120°
-                    case 5:
-                        spriteBatch.Draw(texture, new Rectangle(x, y, l, spirit.Width), null,
-                            Color.Red, (float)Math.PI * 2 / 3, new Vector2(0f, 0f), SpriteEffects.None, 1f);
-                        break;
-
-                    //60°
-                    case 6:
-                        spriteBatch.Draw(texture, new Rectangle(x, y, l, spirit.Width), null,
-                            Color.Red, (float)Math.PI / 3, new Vector2(0f, 0f), SpriteEffects.None, 1f);
-                        break;
-
-                    default:
-                        break;
-                }
+                spriteBatch.Draw(texture, new Rectangle(x, y, l, spirit.Width), null,
+                    spirit.SpiritColor, rotation, new Vector2(0f, 0f), SpriteEffects.None, 1f);
             }
         }
     }

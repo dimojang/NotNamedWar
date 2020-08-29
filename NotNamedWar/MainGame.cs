@@ -45,11 +45,11 @@ namespace NotNamedWar
             gameSpirits.Spirits.Add(
                 new Spirit()
                 {
-                    Direction = 2,
-                    Length = 3,
-                    Position = new Vector2(5, 5),
+                    Direction = 3,
+                    Length = 2,
+                    Position = new Vector2(7, 7),
                     SpiritColor = Color.White,
-                    Width = 1
+                    Width = 5
                 });
 
             base.Initialize();
