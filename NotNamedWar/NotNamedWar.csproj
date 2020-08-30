@@ -45,6 +45,7 @@
     <Compile Include="MainGame.cs" />
     <Compile Include="Models\GameMap.cs" />
     <Compile Include="Models\GameSpirits.cs" />
+    <Compile Include="Models\GameUI.cs" />
     <Compile Include="Models\Spirit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

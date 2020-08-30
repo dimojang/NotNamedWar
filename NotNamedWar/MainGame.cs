@@ -16,6 +16,7 @@ namespace NotNamedWar
 
         GameMap gameMap = new GameMap();
         GameSpirits gameSpirits = new GameSpirits();
+        GameUI gameUI = new GameUI();
 
         public MainGame()
         {
@@ -36,20 +37,20 @@ namespace NotNamedWar
                 new Spirit()
                 {
                     Direction = 1,
-                    Length = 3,
+                    Width = 3,
                     Position = new Vector2(5, 5),
                     SpiritColor = Color.White,
-                    Width = 1
+                    Height = 1
                 });
 
             gameSpirits.Spirits.Add(
                 new Spirit()
                 {
                     Direction = 3,
-                    Length = 2,
+                    Width = 2,
                     Position = new Vector2(7, 7),
                     SpiritColor = Color.White,
-                    Width = 5
+                    Height = 5
                 });
 
             base.Initialize();
@@ -94,6 +95,8 @@ namespace NotNamedWar
 
             gameMap.a = Mouse.GetState().ScrollWheelValue/100;
 
+            gameUI.MouseCursor.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+
             base.Update(gameTime);
         }
 
@@ -111,6 +114,7 @@ namespace NotNamedWar
 
             gameMap.DrawMap(spriteBatch, GraphicsDevice);
             gameSpirits.DrawSpirits(spriteBatch, GraphicsDevice, gameMap);
+            gameUI.DrawGameUI(spriteBatch, GraphicsDevice);
 
             spriteBatch.End();
 

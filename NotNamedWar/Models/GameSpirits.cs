@@ -32,7 +32,7 @@ namespace NotNamedWar.Models
                 int x = (int)gameMap.Position.X + ((int)spirit.Position.X - 1) * hexWidth + ((spirit.Position.Y % 2 == 0) ? hexWidth / 2 : 0) + hexWidth / 2;
                 int y = (int)gameMap.Position.Y + ((int)spirit.Position.Y - 1) * hexHeight * 3 / 4 + hexHeight / 4;
 
-                int l = spirit.Length == 1 ? 50 : ((spirit.Length - 2) * 2 + 2) * Length;
+                int l = spirit.Width == 1 ? 50 : ((spirit.Width - 2) * 2 + 2) * Length;
                 
                 spriteBatch.Draw(texture, new Rectangle(x, y, l, spirit.Width), null,
                     spirit.SpiritColor, rotations[spirit.Direction], new Vector2(0f, 0f), SpriteEffects.None, 1f);

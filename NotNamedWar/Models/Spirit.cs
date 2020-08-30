@@ -13,9 +13,9 @@ namespace NotNamedWar.Models
 
         public int Direction { get; set; } = 0;
 
-        public int Length { get; set; } = 2;
+        public int Width { get; set; } = 2;
 
-        public int Width { get; set; } = 1;
+        public int Height { get; set; } = 1;
 
         public Vector2 Position { get; set; } = new Vector2(5, 5);
 
